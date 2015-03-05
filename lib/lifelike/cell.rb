@@ -28,7 +28,11 @@ module Lifelike
     private
 
     def alive_next?
-      @rules.alive_next?(alive?, alive_neighbor_count)
+      if alive?
+        @rules.survives?(alive_neighbor_count)
+      else
+        @rules.born?(alive_neighbor_count)
+      end
     end
 
     def alive_neighbor_count

@@ -6,12 +6,12 @@ module Lifelike
       @rule_string = rule_string
     end
 
-    def alive_next?(alive, alive_neighbor_count)
-      if alive
-        alive_neighbors_to_survive.include?(alive_neighbor_count)
-      else
-        alive_neighbors_to_be_born.include?(alive_neighbor_count)
-      end
+    def survives?(alive_neighbor_count)
+      alive_neighbors_to_survive.include?(alive_neighbor_count)
+    end
+
+    def born?(alive_neighbor_count)
+      alive_neighbors_to_be_born.include?(alive_neighbor_count)
     end
 
     private
