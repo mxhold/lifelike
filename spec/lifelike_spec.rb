@@ -34,10 +34,10 @@ RSpec.describe Lifelike do
   end
 
   context 'invalid arguments' do
-    it 'exits with the appropriate exit code' do
+    it 'prints an error and exits with the appropriate exit code' do
       stub_const('ARGV', ['-dsaf'])
       expect(Lifelike::CLI).to receive(:exit).with(64)
-      allow($stderr).to receive(:puts)
+      expect($stderr).to receive(:puts).with(/invalid option/)
       Lifelike::CLI.invoke
     end
   end
