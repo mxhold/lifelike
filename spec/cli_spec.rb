@@ -1,5 +1,5 @@
 require 'lifelike'
-RSpec.describe Lifelike do
+RSpec.describe Lifelike::CLI do
   context 'no arguments' do
     it 'prints the input after a generation' do
       stub_const('ARGV', [])

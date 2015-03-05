@@ -15,6 +15,4 @@ module Lifelike
       $stderr.puts "lifelike: #{error}"
     end
   end
-
 end
-
