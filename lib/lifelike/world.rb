@@ -13,10 +13,8 @@ module Lifelike
     end
 
     def tick(generations)
-      if generations == 1
-        tick_once
-      else
-        tick_once.tick(generations - 1)
+      (1..generations).reduce(self) do |world, _|
+        world.tick_once
       end
     end
 
@@ -25,8 +23,6 @@ module Lifelike
         cell.to_s
       end
     end
-
-    private
 
     def tick_once
       self.class.new(
