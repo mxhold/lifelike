@@ -1,4 +1,4 @@
-require 'lifelike'
+require 'lifelike/cli/options'
 RSpec.describe Lifelike::CLI::Options do
   describe '.parse' do
     it 'has defaults' do

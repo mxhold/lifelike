@@ -1,6 +1,7 @@
+require 'lifelike/cli/options'
 require 'optparse'
 module Lifelike
-  class CLI
+  module CLI
     EX_USAGE = 64
 
     def self.invoke
