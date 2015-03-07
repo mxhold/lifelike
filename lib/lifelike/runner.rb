@@ -1,9 +1,9 @@
 module Lifelike
   class Runner
-    def initialize(in_stream, out_stream, rules:, generations:)
+    def initialize(in_stream, out_stream, rule_string:, generations:)
       @seed = in_stream.read
       @out_stream = out_stream
-      @rules = rules
+      @rule_string = rule_string
       @generations = generations
     end
 
@@ -22,7 +22,7 @@ module Lifelike
     end
 
     def lifelike_cellular_automaton
-      LifelikeCellularAutomaton.new(@rules)
+      LifelikeCellularAutomaton.new(@rule_string)
     end
   end
 end

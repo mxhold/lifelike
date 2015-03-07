@@ -2,7 +2,7 @@ require 'lifelike/cli/options'
 RSpec.describe Lifelike::CLI::Options do
   describe '.parse' do
     it 'has defaults' do
-      expect(described_class.parse(nil)).to eql(generations: 1, rules: 'B3/S23')
+      expect(described_class.parse(nil)).to eql(generations: 1, rule_string: 'B3/S23')
     end
 
     it 'sets the generations' do
@@ -10,9 +10,9 @@ RSpec.describe Lifelike::CLI::Options do
       expect(described_class.parse(["--count", "1"])).to include(generations: 1)
     end
 
-    it 'sets the rules' do
-      expect(described_class.parse(['-r', 'B2/S3'])).to include(rules: 'B2/S3')
-      expect(described_class.parse(['--rule', 'B2/S3'])).to include(rules: 'B2/S3')
+    it 'sets the rule_string' do
+      expect(described_class.parse(['-r', 'B2/S3'])).to include(rule_string: 'B2/S3')
+      expect(described_class.parse(['--rule', 'B2/S3'])).to include(rule_string: 'B2/S3')
     end
 
     it 'displays the help with -h' do

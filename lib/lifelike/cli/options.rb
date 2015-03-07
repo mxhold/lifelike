@@ -4,7 +4,7 @@ module Lifelike
       def default_options
         {
           generations: 1,
-          rules: 'B3/S23',
+          rule_string: 'B3/S23',
         }
       end
 
@@ -43,8 +43,8 @@ module Lifelike
             '-r [rule_string]',
             '--rules [rule_string]',
             "Rules for the life-like cellular automaton (default #{default_options[:rules]})"
-          ) do |r|
-            options[:rules] = r
+          ) do |rule_string|
+            options[:rule_string] = rule_string
           end
 
           opts.on('-h', '--help', 'Prints this message') do |r|
