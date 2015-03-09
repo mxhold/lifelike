@@ -30,19 +30,22 @@ module Lifelike
       end
 
       def alive_char
-        chars.sort_by { |c| aliveness(c) }.last
+        two_most_frequent_chars_in_world_string.sort_by { |c| aliveness(c) }.last
       end
 
       def dead_char
-        chars.sort_by { |c| aliveness(c) }.first
+        two_most_frequent_chars_in_world_string.sort_by { |c| aliveness(c) }.first
       end
 
-      # Two most frequent characters in @world_string
-      def chars
-        @chars ||= @world_string.chars.select { |c| valid_chars.include?(c) }.reduce({}) do |frequencies, char|
+      def two_most_frequent_chars_in_world_string
+        @chars ||= valid_chars_in_world_string.reduce({}) do |frequencies, char|
           frequencies[char] = frequencies.fetch(char, 0) + 1
           frequencies
         end.sort_by { |c, f| -f }.take(2).to_h.keys
+      end
+
+      def valid_chars_in_world_string
+        @world_string.chars.select { |c| valid_chars.include?(c) }
       end
 
       # In order from most dead-like to most alive-like

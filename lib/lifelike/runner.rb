@@ -14,15 +14,7 @@ module Lifelike
     private
 
     def final_world
-      initial_world.tick(@generations)
-    end
-
-    def initial_world
-      lifelike_cellular_automaton.new_world(@seed)
-    end
-
-    def lifelike_cellular_automaton
-      LifelikeCellularAutomaton.new(@rule_string)
+      LifelikeCellularAutomaton.new(@seed, @rule_string).tick(@generations)
     end
   end
 end

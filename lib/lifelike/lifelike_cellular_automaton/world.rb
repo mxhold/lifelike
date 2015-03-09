@@ -1,25 +1,13 @@
 module Lifelike
   class LifelikeCellularAutomaton
     class World
-      def initialize(grid, cell_serializer:)
-        @grid = grid
+      def initialize(cell_grid, cell_serializer:)
+        @cell_grid = cell_grid
         @cell_serializer = cell_serializer
       end
 
-      def self.from_s(string, rules)
-        cell_serializer = CellSerializer.new(string, rules)
-        new(
-          Grid.from_s(string) do |char|
-            cell_serializer.char_to_cell(char)
-          end,
-          cell_serializer: cell_serializer
-        )
-      end
-
-      def to_s
-        @grid.to_s do |cell|
-          @cell_serializer.cell_to_char(cell)
-        end
+      def cell_grid
+        @cell_grid
       end
 
       def tick(generations)
@@ -30,7 +18,7 @@ module Lifelike
 
       def tick_once
         self.class.new(
-          @grid.map_with_neighbors do |cell, neighbors|
+          @cell_grid.map_with_neighbors do |cell, neighbors|
             cell.tick(neighbors)
           end,
           cell_serializer: @cell_serializer
