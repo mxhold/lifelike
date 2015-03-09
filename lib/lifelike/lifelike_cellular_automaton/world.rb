@@ -1,43 +1,26 @@
 module Lifelike
   class LifelikeCellularAutomaton
     class World
-      def initialize(grid, rules:, cell_char_to_bool:)
+      def initialize(grid, rules:, cell_serializer:)
         @grid = grid
         @rules = rules
-        @cell_char_to_bool = cell_char_to_bool
+        @cell_serializer = cell_serializer
       end
 
       def self.from_s(string, rules)
-        cell_char_to_bool = cell_char_to_bool(string)
+        cell_serializer = CellSerializer.new(string)
         new(
           Grid.from_s(string) do |char|
-            cell_char_to_bool.fetch(char)
+            cell_serializer.char_to_bool(char)
           end,
           rules: rules,
-          cell_char_to_bool: cell_char_to_bool
+          cell_serializer: cell_serializer
         )
-      end
-
-      def self.cell_char_to_bool(string)
-        # From dead to alive
-        char_precedence = [' ', '_', '.', 'o', '0', 'O', '1', '*', '#', 'x', 'X']
-        c1, c2 = string.chars.select { |c| char_precedence.include?(c) }.reduce({}) do |frequencies, char|
-          frequencies[char] = frequencies.fetch(char, 0) + 1
-          frequencies
-        end.sort_by { |c, f| -f }.take(2).to_h.keys
-        if char_precedence.index(c1) > char_precedence.index(c2)
-          alive = c1
-          dead = c2
-        else
-          alive = c2
-          dead = c1
-        end
-        { alive => true, dead => false }
       end
 
       def to_s
         @grid.to_s do |cell_alive|
-          @cell_char_to_bool.invert.fetch(cell_alive)
+          @cell_serializer.bool_to_char(cell_alive)
         end
       end
 
@@ -58,7 +41,7 @@ module Lifelike
             end
           end,
           rules: @rules,
-          cell_char_to_bool: @cell_char_to_bool
+          cell_serializer: @cell_serializer
         )
       end
     end

@@ -1,6 +1,7 @@
 require 'lifelike/lifelike_cellular_automaton/rules'
 require 'lifelike/lifelike_cellular_automaton/world'
 require 'lifelike/lifelike_cellular_automaton/cell'
+require 'lifelike/lifelike_cellular_automaton/cell_serializer'
 module Lifelike
   class LifelikeCellularAutomaton
     def initialize(rule_string)
