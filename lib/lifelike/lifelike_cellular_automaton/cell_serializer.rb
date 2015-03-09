@@ -1,35 +1,57 @@
 module Lifelike
   class LifelikeCellularAutomaton
     class CellSerializer
-      def initialize(world_string)
-        c1, c2 = world_string.chars.select { |c| char_precedence.include?(c) }.reduce({}) do |frequencies, char|
-          frequencies[char] = frequencies.fetch(char, 0) + 1
-          frequencies
-        end.sort_by { |c, f| -f }.take(2).to_h.keys
-        if char_precedence.index(c1) > char_precedence.index(c2)
-          alive = c1
-          dead = c2
+      def initialize(world_string, rules)
+        @world_string = world_string
+        @rules = rules
+      end
+
+      def cell_to_char(cell)
+        if cell.alive?
+          alive_char
         else
-          alive = c2
-          dead = c1
+          dead_char
         end
-        @char_to_bool = { alive => true, dead => false }
       end
 
-      def bool_to_char(bool)
-        @bool_to_char ||= @char_to_bool.invert
-        @bool_to_char.fetch(bool)
-      end
-
-      def char_to_bool(char)
-        @char_to_bool.fetch(char)
+      def char_to_cell(char)
+        Cell.new(alive?(char), @rules)
       end
 
       private
 
-      def char_precedence
-        # From dead to alive
+      def alive?(char)
+        case char
+        when alive_char
+          true
+        when dead_char
+          false
+        end
+      end
+
+      def alive_char
+        chars.sort_by { |c| aliveness(c) }.last
+      end
+
+      def dead_char
+        chars.sort_by { |c| aliveness(c) }.first
+      end
+
+      # Two most frequent characters in @world_string
+      def chars
+        @chars ||= @world_string.chars.select { |c| valid_chars.include?(c) }.reduce({}) do |frequencies, char|
+          frequencies[char] = frequencies.fetch(char, 0) + 1
+          frequencies
+        end.sort_by { |c, f| -f }.take(2).to_h.keys
+      end
+
+      # In order from most dead-like to most alive-like
+      def valid_chars
         [' ', '_', '.', 'o', '0', 'O', '1', '*', '#', 'x', 'X']
+      end
+
+      def aliveness(char)
+        valid_chars.index(char)
       end
     end
   end

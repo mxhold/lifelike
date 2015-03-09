@@ -1,20 +1,9 @@
 module Lifelike
   class LifelikeCellularAutomaton
     class Cell
-      ALIVE = '1'
-      DEAD = '0'
-
-      def self.from_s(char, rules)
-        new(char == ALIVE, rules)
-      end
-
       def initialize(alive, rules)
         @alive = alive
         @rules = rules
-      end
-
-      def to_s
-        alive? ? ALIVE : DEAD
       end
 
       def alive?
