@@ -3,6 +3,7 @@ require 'lifelike/lifelike_cellular_automaton/world'
 require 'lifelike/lifelike_cellular_automaton/cell'
 require 'lifelike/lifelike_cellular_automaton/cell_serializer'
 require 'lifelike/lifelike_cellular_automaton/world_serializer'
+require 'lifelike/lifelike_cellular_automaton/world_string_analyzer'
 module Lifelike
   class LifelikeCellularAutomaton
     def initialize(seed_string, rule_string)
