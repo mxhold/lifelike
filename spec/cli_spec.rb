@@ -42,4 +42,15 @@ RSpec.describe Lifelike::CLI, :integration do
       Lifelike::CLI.invoke
     end
   end
+
+  context 'alternate live/dead characters' do
+    it 'prints the output with the same characters' do
+      stub_const('ARGV', [])
+      allow($stdin).to receive(:read) { ".o.\n.o.\n.o." }
+      allow(Lifelike::CLI).to receive(:exit)
+      expect {
+        Lifelike::CLI.invoke
+      }.to output("...\nooo\n...\n").to_stdout
+    end
+  end
 end
