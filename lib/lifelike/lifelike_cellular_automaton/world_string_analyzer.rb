@@ -6,20 +6,20 @@ module Lifelike
       end
 
       def alive_char
-        two_most_frequent_chars_in_world_string.sort_by { |c| aliveness(c) }.last
+        two_most_frequent_chars_in_world_string_sorted_by_aliveness.last
       end
 
       def dead_char
-        two_most_frequent_chars_in_world_string.sort_by { |c| aliveness(c) }.first
+        two_most_frequent_chars_in_world_string_sorted_by_aliveness.first
       end
 
       private
 
-      def two_most_frequent_chars_in_world_string
+      def two_most_frequent_chars_in_world_string_sorted_by_aliveness
         @chars ||= valid_chars_in_world_string.reduce({}) do |frequencies, char|
           frequencies[char] = frequencies.fetch(char, 0) + 1
           frequencies
-        end.sort_by { |c, f| -f }.take(2).to_h.keys
+        end.sort_by { |c, f| -f }.take(2).to_h.keys.sort_by { |c| aliveness(c) }
       end
 
       def valid_chars_in_world_string

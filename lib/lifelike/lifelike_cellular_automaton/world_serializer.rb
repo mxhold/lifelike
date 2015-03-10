@@ -1,12 +1,12 @@
 module Lifelike
   class LifelikeCellularAutomaton
     class WorldSerializer
-      def initialize(string, rules)
-        @cell_serializer = CellSerializer.new(string, rules)
+      def initialize(cell_serializer)
+        @cell_serializer = cell_serializer
       end
 
       def string_to_world(string)
-        World.new(string_to_cell_grid(string), cell_serializer: @cell_serializer)
+        World.new(string_to_cell_grid(string))
       end
 
       def world_to_string(world)

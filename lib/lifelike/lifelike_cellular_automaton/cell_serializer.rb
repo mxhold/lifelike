@@ -1,10 +1,9 @@
 module Lifelike
   class LifelikeCellularAutomaton
     class CellSerializer
-      def initialize(world_string, rules)
-        world_string_analyzer = WorldStringAnalyzer.new(world_string)
-        @alive_char = world_string_analyzer.alive_char
-        @dead_char = world_string_analyzer.dead_char
+      def initialize(alive_char:, dead_char:, rules:)
+        @alive_char = alive_char
+        @dead_char = dead_char
         @rules = rules
       end
 
@@ -30,7 +29,6 @@ module Lifelike
           false
         end
       end
-
     end
   end
 end
