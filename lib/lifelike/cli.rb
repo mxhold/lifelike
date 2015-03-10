@@ -7,7 +7,7 @@ module Lifelike
     def self.invoke
       Runner.new($stdin, $stdout, Options.parse(ARGV)).run
       exit
-    rescue OptionParser::InvalidOption => e
+    rescue OptionParser::ParseError => e
       report_error e
       exit EX_USAGE
     end
