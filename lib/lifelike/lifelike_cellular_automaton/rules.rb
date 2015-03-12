@@ -32,7 +32,15 @@ module Lifelike
       private
 
       def numbers_after(letter)
-        @string[/#{letter}(\d*)/, 1].split('').map(&:to_i)
+        if numeric_characters_after(letter)
+          numeric_characters_after(letter).split('').map(&:to_i)
+        else
+          raise UnparsableRuleStringError.new(@string)
+        end
+      end
+
+      def numeric_characters_after(letter)
+        @string[/#{letter}(\d*)/, 1]
       end
     end
   end
