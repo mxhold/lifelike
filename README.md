@@ -74,6 +74,20 @@ $ cat glider | lifelike 4
 00110
 ```
 
+You don't have to use ones and zeros to represent life and death.
+Lifelike will be smart and try to guess:
+
+```
+$ echo "...\nooo\n..." | lifelike
+.o.
+.o.
+.o.
+$ echo "   \nXXX\n   " | lifelike
+ X 
+ X 
+ X 
+```
+
 ### Game of Life variants
 
 You can define the rules Lifelike will use with the `-r` flag.
