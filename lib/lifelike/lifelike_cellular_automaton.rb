@@ -8,7 +8,7 @@ module Lifelike
   class LifelikeCellularAutomaton
     def initialize(initial_world_string, rule_string)
       @initial_world_string = initial_world_string
-      @rule_string = rule_string
+      @rules = Rules.new(rule_string)
     end
 
     def tick(generations)
@@ -29,7 +29,7 @@ module Lifelike
       CellSerializer.new(
         alive_char: alive_char,
         dead_char: dead_char,
-        rules: Rules.new(@rule_string)
+        rules: @rules
       )
     end
 
