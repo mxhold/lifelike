@@ -32,8 +32,8 @@ module Lifelike
       private
 
       def numbers_after(letter)
-        if numeric_characters_after(letter)
-          numeric_characters_after(letter).split('').map(&:to_i)
+        if (characters = numeric_characters_after(letter))
+          characters.split('').map(&:to_i)
         else
           raise UnparsableRuleStringError.new(@string)
         end
