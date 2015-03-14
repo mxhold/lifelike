@@ -2,8 +2,10 @@ require 'lifelike/cli/options'
 require 'optparse'
 module Lifelike
   module CLI
-    EX_USAGE = 64
-    EX_DATAERR = 65
+    # Conventional exit codes from BSD's sysexits.h
+    # See: https://www.freebsd.org/cgi/man.cgi?query=sysexits
+    EX_USAGE = 64 # Command was used incorrectly
+    EX_DATAERR = 65 # Input data was incorrect
 
     def self.invoke
       Runner.new($stdin, $stdout, Options.parse(ARGV)).run
