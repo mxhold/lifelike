@@ -1,8 +1,10 @@
 module Lifelike
   class LifelikeCellularAutomaton
     class WorldStringAnalyzer
-      def initialize(world_string)
+      def initialize(world_string, fallback_dead_char: ' ', fallback_alive_char: 'X')
         @world_string = world_string
+        @fallback_dead_char = fallback_dead_char
+        @fallback_alive_char = fallback_alive_char
       end
 
       def dead_char
@@ -21,9 +23,9 @@ module Lifelike
           raise InsufficientValidCharacterError.new(valid_possible_chars_by_aliveness)
         when 1
           if deadlike.include?(valid_chars.first)
-            [valid_chars.first, lifelike.last]
+            [valid_chars.first, @fallback_alive_char]
           else
-            [deadlike.first, valid_chars.first]
+            [@fallback_dead_char, valid_chars.first]
           end
         else
           valid_chars_by_frequency.take(2).sort_by { |c| aliveness(c) }
@@ -51,11 +53,11 @@ module Lifelike
       end
 
       def deadlike
-        [' ', '_', '.', 'o', 'O', '0']
+        [' ', '_', '.', ',', 'o', 'O', '0']
       end
 
       def lifelike
-        ['1', '*', '#', 'x', 'X']
+        ['1', 'x', '*', 'X', '#', '@']
       end
 
       def aliveness(char)
