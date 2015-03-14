@@ -1,13 +1,6 @@
 module Lifelike
   module CLI
     class Options
-      def default_options
-        {
-          generations: 1,
-          rule_string: 'B3/S23',
-        }
-      end
-
       def self.parse(argv)
         new.parse(argv)
       end
@@ -24,6 +17,13 @@ module Lifelike
       private
 
       attr_reader :options
+
+      def default_options
+        {
+          generations: 1,
+          rule_string: 'B3/S23',
+        }
+      end
 
       def option_parser
         OptionParser.new do |opts|
