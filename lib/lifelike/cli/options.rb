@@ -1,3 +1,4 @@
+require 'optparse'
 module Lifelike
   module CLI
     class Options

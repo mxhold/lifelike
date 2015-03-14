@@ -1,5 +1,4 @@
 require 'lifelike/cli/options'
-require 'optparse'
 module Lifelike
   module CLI
     # Conventional exit codes from BSD's sysexits.h
