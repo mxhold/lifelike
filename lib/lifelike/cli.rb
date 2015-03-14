@@ -11,7 +11,7 @@ module Lifelike
     rescue OptionParser::ParseError, Lifelike::UnparsableRuleStringError => e
       report_error e
       exit EX_USAGE
-    rescue Lifelike::UnexpectedCharacterError => e
+    rescue Lifelike::UnexpectedCharacterError, Lifelike::InsufficientValidCharacterError => e
       report_error e
       exit EX_DATAERR
     end
