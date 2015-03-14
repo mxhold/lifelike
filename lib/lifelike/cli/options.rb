@@ -12,12 +12,10 @@ module Lifelike
 
       def parse(argv)
         option_parser.parse(argv)
-        options
+        @options
       end
 
       private
-
-      attr_reader :options
 
       def default_options
         {
@@ -37,7 +35,7 @@ module Lifelike
             'Number of iterations to perform'\
             "(default #{default_options[:generations]})"
           ) do |c|
-            options[:generations] = c.to_i
+            @options[:generations] = c.to_i
           end
 
           opts.on(
@@ -45,7 +43,7 @@ module Lifelike
             '--rules [rule_string]',
             "Rules for the life-like cellular automaton (default #{default_options[:rules]})"
           ) do |rule_string|
-            options[:rule_string] = rule_string
+            @options[:rule_string] = rule_string
           end
 
           opts.on('-h', '--help', 'Prints this message') do |r|
