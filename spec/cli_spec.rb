@@ -34,15 +34,6 @@ RSpec.describe Lifelike::CLI, :integration do
     end
   end
 
-  context 'invalid arguments' do
-    it 'prints an error and exits with the appropriate exit code' do
-      stub_const('ARGV', ['-dsaf'])
-      expect(Lifelike::CLI).to receive(:exit).with(64)
-      expect($stderr).to receive(:puts).with(/invalid option/)
-      Lifelike::CLI.invoke
-    end
-  end
-
   context 'alternate live/dead characters' do
     it 'prints the output with the same characters' do
       stub_const('ARGV', [])
@@ -51,6 +42,49 @@ RSpec.describe Lifelike::CLI, :integration do
       expect {
         Lifelike::CLI.invoke
       }.to output("...\nooo\n...\n").to_stdout
+    end
+  end
+
+  context 'invalid arguments' do
+    it 'prints an error and exits with the appropriate exit code' do
+      stub_const('ARGV', ['-dsaf'])
+      expect(Lifelike::CLI).to receive(:exit).with(64)
+      expect {
+        Lifelike::CLI.invoke
+      }.to output(/invalid option/).to_stderr
+    end
+  end
+
+  context 'unparsable rule string' do
+    it 'prints an error and exits with the appropriate exit code' do
+      stub_const('ARGV', ['-r', 'QWSD'])
+      allow($stdin).to receive(:read) { "o.o" }
+      expect(Lifelike::CLI).to receive(:exit).with(64)
+      expect {
+        Lifelike::CLI.invoke
+      }.to output(/unparsable rule string/i).to_stderr
+    end
+  end
+
+  context 'insufficient valid characters' do
+    it 'raises an error and exits with the appropriate exit code' do
+      stub_const('ARGV', [])
+      allow($stdin).to receive(:read) { "wyr" }
+      allow(Lifelike::CLI).to receive(:exit).with(65)
+      expect {
+        Lifelike::CLI.invoke
+      }.to output(/insufficient characters/i).to_stderr
+    end
+  end
+
+  context 'unexpected character' do
+    it 'raises an error and exits with the appropriate exit code' do
+      stub_const('ARGV', [])
+      allow($stdin).to receive(:read) { "o.o.W" }
+      allow(Lifelike::CLI).to receive(:exit).with(65)
+      expect {
+        Lifelike::CLI.invoke
+      }.to output(/unexpected character/i).to_stderr
     end
   end
 end
