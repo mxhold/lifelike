@@ -1,5 +1,12 @@
 # Lifelike
 
+[![Build
+Status](https://travis-ci.org/mxhold/lifelike.svg?branch=master)](https://travis-ci.org/mxhold/lifelike)
+[![Code
+Climate](https://codeclimate.com/github/mxhold/lifelike/badges/gpa.svg)](https://codeclimate.com/github/mxhold/lifelike)
+[![Test
+Coverage](https://codeclimate.com/github/mxhold/lifelike/badges/coverage.svg)](https://codeclimate.com/github/mxhold/lifelike)
+
 Lifelike plays [Conway's Game of
 Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) by default but it
 can be used to simulate any [Life-like cellular
