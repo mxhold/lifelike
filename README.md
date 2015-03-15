@@ -1,5 +1,7 @@
 # Lifelike
 
+[![Gem
+Version](https://badge.fury.io/rb/lifelike.svg)](http://badge.fury.io/rb/lifelike)
 [![Build
 Status](https://travis-ci.org/mxhold/lifelike.svg?branch=master)](https://travis-ci.org/mxhold/lifelike)
 [![Code
