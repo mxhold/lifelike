@@ -1,0 +1,22 @@
+Style/TrivialAccessors:
+  AllowPredicates: true
+
+Style/TrailingComma:
+  Enabled: false
+
+Metrics/LineLength:
+  Exclude:
+    - spec/*
+
+Style/RaiseArgs:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Lint/HandleExceptions:
+  Exclude:
+    - Rakefile
+
+Style/RegexpLiteral:
+  MaxSlashes: 0

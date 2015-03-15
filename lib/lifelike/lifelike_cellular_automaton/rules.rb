@@ -35,7 +35,7 @@ module Lifelike
         if (characters = numeric_characters_after(letter))
           characters.split('').map(&:to_i)
         else
-          raise UnparsableRuleStringError.new(@string)
+          fail UnparsableRuleStringError.new(@string)
         end
       end
 

@@ -1,7 +1,7 @@
 module Lifelike
   class Grid
     ROW_DELIMITER = "\n"
-    CELL_DELIMITER = ""
+    CELL_DELIMITER = ''
 
     def initialize(rows)
       @rows = rows
@@ -44,11 +44,13 @@ module Lifelike
     end
 
     def neighbor_shifts
+      # rubocop:disable all
       [
         [-1, -1], [-1,  0], [-1,  1],
         [ 0, -1],           [ 0,  1],
         [ 1, -1], [ 1,  0], [ 1,  1],
       ]
+      # rubocop:enable all
     end
 
     def nonwrapping_fetch(row_index, col_index)

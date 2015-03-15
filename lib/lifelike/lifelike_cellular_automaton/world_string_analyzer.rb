@@ -10,7 +10,7 @@ module Lifelike
       def dead_char
         case valid_chars.size
         when 0
-          raise InsufficientValidCharacterError.new(allowed_chars_by_aliveness)
+          fail InsufficientValidCharacterError.new(allowed_chars_by_aliveness)
         when 1
           deadlike_char || @fallback_dead_char
         else
@@ -21,7 +21,7 @@ module Lifelike
       def alive_char
         case valid_chars.size
         when 0
-          raise InsufficientValidCharacterError.new(allowed_chars_by_aliveness)
+          fail InsufficientValidCharacterError.new(allowed_chars_by_aliveness)
         when 1
           lifelike_char || @fallback_alive_char
         else

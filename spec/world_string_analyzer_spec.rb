@@ -35,7 +35,7 @@ RSpec.describe Lifelike::LifelikeCellularAutomaton::WorldStringAnalyzer do
       matcher :consider do |character|
         match do |subject|
           analyzer = subject.new(character, fallback_dead_char: 'd', fallback_alive_char: 'a')
-          fail if ['d', 'a'].include?(character)
+          fail if %w(d a).include?(character)
           if @consider_dead
             analyzer.dead_char == character
           else

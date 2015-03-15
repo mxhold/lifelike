@@ -6,8 +6,8 @@ RSpec.describe Lifelike::CLI::Options do
     end
 
     it 'sets the generations' do
-      expect(described_class.parse!(["-c", "1"])).to include(generations: 1)
-      expect(described_class.parse!(["--count", "1"])).to include(generations: 1)
+      expect(described_class.parse!(['-c', '1'])).to include(generations: 1)
+      expect(described_class.parse!(['--count', '1'])).to include(generations: 1)
     end
 
     it 'sets the rule_string' do

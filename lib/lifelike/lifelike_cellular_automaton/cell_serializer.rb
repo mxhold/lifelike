@@ -28,7 +28,7 @@ module Lifelike
         when @dead_char
           false
         else
-          raise UnexpectedCharacterError.new(char, expected: [@alive_char, @dead_char])
+          fail UnexpectedCharacterError.new(char, expected: [@alive_char, @dead_char])
         end
       end
     end

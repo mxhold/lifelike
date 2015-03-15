@@ -20,14 +20,14 @@ module Lifelike
       def default_options
         {
           generations: 1,
-          rule_string: 'B3/S23',
+          rule_string: 'B3/S23'
         }
       end
 
       def option_parser
         OptionParser.new do |opts|
           opts.banner = 'Usage: lifelike [options] [file]'
-          opts.separator "Options:"
+          opts.separator 'Options:'
 
           opts.on(
             '-c [iterations]',
@@ -46,12 +46,12 @@ module Lifelike
             @options[:rule_string] = rule_string
           end
 
-          opts.on('-h', '--help', 'Prints this message') do |r|
+          opts.on('-h', '--help', 'Prints this message') do
             puts opts
             exit
           end
 
-          opts.on('-v', '--version', 'Prints the version') do |r|
+          opts.on('-v', '--version', 'Prints the version') do
             puts Lifelike::VERSION
             exit
           end

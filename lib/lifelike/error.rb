@@ -4,7 +4,7 @@ module Lifelike
 
   class InsufficientValidCharacterError < LifelikeError
     def initialize(valid_characters)
-      super("Insufficient characters for determining life/death. Expected two of the following characters: #{valid_characters.map { |c| "\"#{c}\""}.join(', ') }")
+      super("Insufficient characters for determining life/death. Expected two of the following characters: #{valid_characters.map { |c| "\"#{c}\"" }.join(', ') }")
     end
   end
 
