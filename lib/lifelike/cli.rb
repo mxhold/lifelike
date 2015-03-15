@@ -10,10 +10,10 @@ module Lifelike
       options = Options.parse!(ARGV)
       puts Runner.new(ARGF.read, options).run
       exit
-    rescue OptionParser::ParseError, Lifelike::UnparsableRuleStringError => e
+    rescue OptionParser::ParseError, UnparsableRuleStringError => e
       report_error e
       exit EX_USAGE
-    rescue Lifelike::UnexpectedCharacterError, Lifelike::InsufficientValidCharacterError => e
+    rescue UnexpectedCharacterError, InsufficientValidCharacterError => e
       report_error e
       exit EX_DATAERR
     end

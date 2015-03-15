@@ -43,15 +43,15 @@ module Lifelike
       end.compact
     end
 
+    # rubocop:disable all
     def neighbor_shifts
-      # rubocop:disable all
       [
         [-1, -1], [-1,  0], [-1,  1],
         [ 0, -1],           [ 0,  1],
         [ 1, -1], [ 1,  0], [ 1,  1],
       ]
-      # rubocop:enable all
     end
+    # rubocop:enable all
 
     def nonwrapping_fetch(row_index, col_index)
       @rows.fetch(row_index, [])[col_index] if row_index >= 0 && col_index >= 0

@@ -9,7 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Max Holder']
   spec.email         = ['mxhold@gmail.com']
   spec.summary       = 'Simulates Life-like cellular automata'
-  spec.description   = "A gem for playing Conway's Game of Life and other Life-like cellular automata"
+  spec.description   = 'A gem for playing Conway\'s Game of Life and other ' \
+                       'Life-like cellular automata'
   spec.homepage      = 'https://github.com/mxhold/lifelike'
   spec.license       = 'MIT'
 

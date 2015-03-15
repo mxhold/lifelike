@@ -34,7 +34,7 @@ RSpec.describe Lifelike::LifelikeCellularAutomaton::WorldStringAnalyzer do
     describe 'detecting whether it should be considered alive or dead' do
       matcher :consider do |character|
         match do |subject|
-          analyzer = subject.new(character, fallback_dead_char: 'd', fallback_alive_char: 'a')
+          analyzer = subject.new(character, default_dead_char: 'd', default_alive_char: 'a')
           fail if %w(d a).include?(character)
           if @consider_dead
             analyzer.dead_char == character
@@ -64,16 +64,16 @@ RSpec.describe Lifelike::LifelikeCellularAutomaton::WorldStringAnalyzer do
       it { is_expected.to consider('#').to_be_alive }
       it { is_expected.to consider('@').to_be_alive }
     end
-    describe 'fallback characters' do
+    describe 'default characters' do
       context 'provided char was considered dead' do
         subject { described_class.new(' ') }
-        it 'uses "X" as the fallback alive char' do
+        it 'uses "X" as the default alive char' do
           expect(subject.alive_char).to eql 'X'
         end
       end
       context 'provided char was considered alive' do
         subject { described_class.new('X') }
-        it 'uses " " as the fallback dead char' do
+        it 'uses " " as the default dead char' do
           expect(subject.dead_char).to eql ' '
         end
       end

@@ -24,6 +24,7 @@ module Lifelike
         }
       end
 
+      # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
       def option_parser
         OptionParser.new do |opts|
           opts.banner = 'Usage: lifelike [options] [file]'
@@ -32,7 +33,7 @@ module Lifelike
           opts.on(
             '-c [iterations]',
             '--count [iterations]',
-            'Number of iterations to perform'\
+            'Number of iterations to perform' \
             "(default #{default_options[:generations]})"
           ) do |c|
             @options[:generations] = c.to_i
@@ -41,7 +42,8 @@ module Lifelike
           opts.on(
             '-r [rule_string]',
             '--rules [rule_string]',
-            "Rules for the life-like cellular automaton (default #{default_options[:rules]})"
+            'Rules for the life-like cellular automaton ' \
+            "(default #{default_options[:rules]})"
           ) do |rule_string|
             @options[:rule_string] = rule_string
           end
@@ -57,6 +59,7 @@ module Lifelike
           end
         end
       end
+      # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
     end
   end
 end

@@ -28,8 +28,15 @@ module Lifelike
         when @dead_char
           false
         else
-          fail UnexpectedCharacterError.new(char, expected: [@alive_char, @dead_char])
+          handle_unexpected_character(char)
         end
+      end
+
+      def handle_unexpected_character(char)
+        fail UnexpectedCharacterError.new(
+          char,
+          expected: [@alive_char, @dead_char]
+        )
       end
     end
   end

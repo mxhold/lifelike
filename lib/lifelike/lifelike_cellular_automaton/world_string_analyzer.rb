@@ -1,10 +1,10 @@
 module Lifelike
   class LifelikeCellularAutomaton
     class WorldStringAnalyzer
-      def initialize(world_string, fallback_dead_char: ' ', fallback_alive_char: 'X')
-        @world_string = world_string
-        @fallback_dead_char = fallback_dead_char
-        @fallback_alive_char = fallback_alive_char
+      def initialize(string, default_dead_char: ' ', default_alive_char: 'X')
+        @world_string = string
+        @default_dead_char = default_dead_char
+        @default_alive_char = default_alive_char
       end
 
       def dead_char
@@ -12,7 +12,7 @@ module Lifelike
         when 0
           fail InsufficientValidCharacterError.new(allowed_chars_by_aliveness)
         when 1
-          deadlike_char || @fallback_dead_char
+          deadlike_char || @default_dead_char
         else
           least_alive_valid_char
         end
@@ -23,7 +23,7 @@ module Lifelike
         when 0
           fail InsufficientValidCharacterError.new(allowed_chars_by_aliveness)
         when 1
-          lifelike_char || @fallback_alive_char
+          lifelike_char || @default_alive_char
         else
           most_alive_valid_char
         end
@@ -52,11 +52,13 @@ module Lifelike
       end
 
       def valid_chars_by_aliveness
-        valid_chars.take(2).sort_by { |c| aliveness(c) }
+        valid_chars.take(2).sort_by { |char| aliveness(char) }
       end
 
       def valid_chars
-        @world_string.chars.uniq.select { |c| allowed_chars_by_aliveness.include?(c) }
+        @world_string.chars.uniq.select do |char|
+          allowed_chars_by_aliveness.include?(char)
+        end
       end
 
       # Roughly in order from most dead-like to most alive-like
