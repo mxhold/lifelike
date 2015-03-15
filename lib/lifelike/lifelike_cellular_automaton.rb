@@ -12,13 +12,13 @@ module Lifelike
     end
 
     def tick(generations)
-      world_serializer.world_to_string(initial_world.tick(generations))
+      world_serializer.dump(initial_world.tick(generations))
     end
 
     private
 
     def initial_world
-      world_serializer.string_to_world(@initial_world_string)
+      world_serializer.load(@initial_world_string)
     end
 
     def world_serializer

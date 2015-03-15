@@ -7,7 +7,7 @@ module Lifelike
         @rules = rules
       end
 
-      def cell_to_char(cell)
+      def dump(cell)
         if cell.alive?
           @alive_char
         else
@@ -15,7 +15,7 @@ module Lifelike
         end
       end
 
-      def char_to_cell(char)
+      def load(char)
         Cell.new(alive?(char), @rules)
       end
 
