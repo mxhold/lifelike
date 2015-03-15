@@ -23,7 +23,8 @@ rather than as efficient as possible.
 By default, Lifelike plays [Conway's Game of
 Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life).
 
-It gets it initial state from standard input and then prints the next generation:
+It gets it initial state from standard input or a file and then prints the next
+generation:
 
 ```bash
 $ echo "...\nooo\n..." > blinker
@@ -32,6 +33,10 @@ $ cat blinker
 ooo
 ...
 $ cat blinker | lifelike
+.o.
+.o.
+.o.
+$ lifelike blinker
 .o.
 .o.
 .o.

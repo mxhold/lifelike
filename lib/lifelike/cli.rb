@@ -7,7 +7,8 @@ module Lifelike
     EX_DATAERR = 65 # Input data was incorrect
 
     def self.invoke
-      Runner.new($stdin, $stdout, Options.parse(ARGV)).run
+      options = Options.parse!(ARGV)
+      Runner.new(ARGF, $stdout, options).run
       exit
     rescue OptionParser::ParseError, Lifelike::UnparsableRuleStringError => e
       report_error e

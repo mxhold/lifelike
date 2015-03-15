@@ -4,7 +4,7 @@ RSpec.describe Lifelike::CLI, :integration do
   context 'no arguments' do
     it 'prints the input after a generation' do
       stub_const('ARGV', [])
-      allow($stdin).to receive(:read) { "010\n010\n010" }
+      allow(ARGF).to receive(:read) { "010\n010\n010" }
       allow(Lifelike::CLI).to receive(:exit)
       expect {
         Lifelike::CLI.invoke
@@ -15,7 +15,7 @@ RSpec.describe Lifelike::CLI, :integration do
   context 'given 2 as an argument' do
     it 'prints the input after 2 generations' do
       stub_const('ARGV', ['-c', '2'])
-      allow($stdin).to receive(:read) { "010\n010\n010" }
+      allow(ARGF).to receive(:read) { "010\n010\n010" }
       allow(Lifelike::CLI).to receive(:exit)
       expect {
         Lifelike::CLI.invoke
@@ -26,7 +26,7 @@ RSpec.describe Lifelike::CLI, :integration do
   context 'alternate rules specified' do
     it 'prints the input after a generation using the alternate rules' do
       stub_const('ARGV', ['-r', 'B2/S'])
-      allow($stdin).to receive(:read) { "0000000\n0000000\n0011000\n0000000\n0000000" }
+      allow(ARGF).to receive(:read) { "0000000\n0000000\n0011000\n0000000\n0000000" }
       allow(Lifelike::CLI).to receive(:exit)
       expect {
         Lifelike::CLI.invoke
@@ -37,7 +37,7 @@ RSpec.describe Lifelike::CLI, :integration do
   context 'alternate live/dead characters' do
     it 'prints the output with the same characters' do
       stub_const('ARGV', [])
-      allow($stdin).to receive(:read) { ".o.\n.o.\n.o." }
+      allow(ARGF).to receive(:read) { ".o.\n.o.\n.o." }
       allow(Lifelike::CLI).to receive(:exit)
       expect {
         Lifelike::CLI.invoke
@@ -58,7 +58,7 @@ RSpec.describe Lifelike::CLI, :integration do
   context 'unparsable rule string' do
     it 'prints an error and exits with the appropriate exit code' do
       stub_const('ARGV', ['-r', 'QWSD'])
-      allow($stdin).to receive(:read) { "o.o" }
+      allow(ARGF).to receive(:read) { "o.o" }
       expect(Lifelike::CLI).to receive(:exit).with(64)
       expect {
         Lifelike::CLI.invoke
@@ -69,7 +69,7 @@ RSpec.describe Lifelike::CLI, :integration do
   context 'insufficient valid characters' do
     it 'raises an error and exits with the appropriate exit code' do
       stub_const('ARGV', [])
-      allow($stdin).to receive(:read) { "wyr" }
+      allow(ARGF).to receive(:read) { "wyr" }
       allow(Lifelike::CLI).to receive(:exit).with(65)
       expect {
         Lifelike::CLI.invoke
@@ -80,7 +80,7 @@ RSpec.describe Lifelike::CLI, :integration do
   context 'unexpected character' do
     it 'raises an error and exits with the appropriate exit code' do
       stub_const('ARGV', [])
-      allow($stdin).to receive(:read) { "o.o.W" }
+      allow(ARGF).to receive(:read) { "o.o.W" }
       allow(Lifelike::CLI).to receive(:exit).with(65)
       expect {
         Lifelike::CLI.invoke

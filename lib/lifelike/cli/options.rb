@@ -2,16 +2,16 @@ require 'optparse'
 module Lifelike
   module CLI
     class Options
-      def self.parse(argv)
-        new.parse(argv)
+      def self.parse!(argv)
+        new.parse!(argv)
       end
 
       def initialize
         @options = default_options
       end
 
-      def parse(argv)
-        option_parser.parse(argv)
+      def parse!(argv)
+        option_parser.parse!(argv)
         @options
       end
 
@@ -26,7 +26,7 @@ module Lifelike
 
       def option_parser
         OptionParser.new do |opts|
-          opts.banner = 'Usage: lifelike [options]'
+          opts.banner = 'Usage: lifelike [options] [file]'
           opts.separator "Options:"
 
           opts.on(
