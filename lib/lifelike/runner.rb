@@ -1,14 +1,13 @@
 module Lifelike
   class Runner
-    def initialize(in_stream, out_stream, rule_string:, generations:)
-      @initial_world_string = in_stream.read
-      @out_stream = out_stream
+    def initialize(initial_world_string, rule_string:, generations:)
+      @initial_world_string = initial_world_string
       @rule_string = rule_string
       @generations = generations
     end
 
     def run
-      @out_stream.puts final_world_string
+      final_world_string
     end
 
     private

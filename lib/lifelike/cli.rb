@@ -8,7 +8,7 @@ module Lifelike
 
     def self.invoke
       options = Options.parse!(ARGV)
-      Runner.new(ARGF, $stdout, options).run
+      puts Runner.new(ARGF.read, options).run
       exit
     rescue OptionParser::ParseError, Lifelike::UnparsableRuleStringError => e
       report_error e
