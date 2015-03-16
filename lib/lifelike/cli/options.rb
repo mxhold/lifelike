@@ -43,7 +43,7 @@ module Lifelike
             '-r [rule_string]',
             '--rules [rule_string]',
             'Rules for the life-like cellular automaton ' \
-            "(default #{default_options[:rules]})"
+            "(default #{default_options[:rule_string]})"
           ) do |rule_string|
             @options[:rule_string] = rule_string
           end
