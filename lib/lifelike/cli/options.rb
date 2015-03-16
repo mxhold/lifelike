@@ -33,8 +33,8 @@ module Lifelike
           opts.on(
             '-c [iterations]',
             '--count [iterations]',
-            'Number of iterations to perform' \
-            "(default #{default_options[:generations]})"
+            'Number of iterations to perform ' \
+            "(default: #{default_options[:generations]})"
           ) do |c|
             @options[:generations] = c.to_i
           end
@@ -43,7 +43,7 @@ module Lifelike
             '-r [rule_string]',
             '--rules [rule_string]',
             'Rules for the life-like cellular automaton ' \
-            "(default #{default_options[:rule_string]})"
+            "(default: #{default_options[:rule_string]})"
           ) do |rule_string|
             @options[:rule_string] = rule_string
           end
