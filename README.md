@@ -20,7 +20,8 @@ This gem is inspired by the [Global Day of
 Coderetreat](http://globalday.coderetreat.org/) where participants attempt to
 implement Conway's Game of Life under various constraints.
 
-The goal of this implementation is to make the code as well-factored as possible
+The goal of this implementation is to make the code as well-factored as possible,
+emphasizing the [single responsibility principle](https://en.wikipedia.org/wiki/Single_responsibility_principle),
 rather than as efficient as possible.
 
 ## Installation
