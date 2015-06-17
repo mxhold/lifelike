@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'rspec', '~> 3.2'
   spec.add_development_dependency 'codeclimate-test-reporter'
-  spec.add_development_dependency 'rubocop'
+  spec.add_development_dependency 'rubocop', '~> 0.29.0'
 
   spec.required_ruby_version = '~> 2.1'
 end
